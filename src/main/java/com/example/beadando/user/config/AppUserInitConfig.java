@@ -48,7 +48,7 @@ public class AppUserInitConfig {
 
             AppUserEntity userEntity = new AppUserEntity();
             userEntity.setUsername("user");
-            userEntity.setPassword(new BCryptPasswordEncoder().encode("asdf123"));
+            userEntity.setPassword(new BCryptPasswordEncoder().encode("asdf456"));
             AppRoleEntity userRole = roles.stream().filter(appRoleEntity -> appRoleEntity.getAuthority().equals("ROLE_USER")).findFirst().get();
             userEntity.setAuthorities(new HashSet<>(Collections.singletonList(userRole)));
             appUserService.create(userEntity);

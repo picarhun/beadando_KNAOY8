@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests().
                 // Allow all flow internal requests.
 
-                antMatchers("/manufacturermanager").hasRole("ADMIN").
+                antMatchers("/manufacturermanager").authenticated().
                 antMatchers("/usermanager").hasRole("ADMIN").
                 antMatchers("/carmanager").authenticated().
                 antMatchers("/").authenticated()

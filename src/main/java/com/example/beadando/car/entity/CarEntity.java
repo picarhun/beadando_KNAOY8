@@ -12,12 +12,12 @@ public class CarEntity extends CoreEntity {
     @Column(name = "Type")
     private String type;
     @ManyToOne
-    @JoinColumn(name = "Manufacturer_Id")
+    @JoinColumn(name = "manufacturer_id")
     private ManufacturerEntity manufacturer;
-    @Column(name = "Door_Number")
-    private double door_number;
-    @Column(name = "Manufacturer_Year")
-    private double manufacturerYear;
+    @Column(name = "door_number")
+    private int doorNumber;
+    @Column(name = "manufacturer_year")
+    private int manufacturerYear;
 
     public CarEntity() {
     }
@@ -38,19 +38,19 @@ public class CarEntity extends CoreEntity {
         this.manufacturer = manufacturer;
     }
 
-    public double getDoor_number() {
-        return door_number;
+    public int getDoor_number() {
+        return doorNumber;
     }
 
-    public void setDoor_number(double door_number) {
-        this.door_number = door_number;
+    public void setDoor_number(int door_number) {
+        this.doorNumber = door_number;
     }
 
-    public double getManufacturerYear() {
+    public int getManufacturerYear() {
         return manufacturerYear;
     }
 
-    public void setManufacturerYear(double manufacturer_year) {
+    public void setManufacturerYear(int manufacturer_year) {
         this.manufacturerYear = manufacturer_year;
     }
 }

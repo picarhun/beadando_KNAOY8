@@ -9,7 +9,7 @@ public class MainView extends VerticalLayout {
 
     public MainView(){
         add(new MenuComponent());
-        add("Main page");
+        add("Fő oldal");
     }
 
 }

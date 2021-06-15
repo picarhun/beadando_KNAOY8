@@ -21,15 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 
-//http://localhost:8081/carmanager
+//http://localhost:8082/carmanager
 @Route
 public class CarManagerView extends VerticalLayout {
     private CarEntity selectedCarEntity;
     private VerticalLayout form;
     private TextField type;
     private ComboBox<ManufacturerEntity> manufacturer;
-    private NumberField door_number;
-    private NumberField manufacturer_year;
 
 
     private Binder<CarEntity> binder;
@@ -51,8 +49,8 @@ public class CarManagerView extends VerticalLayout {
             }
             return "";
         }).setHeader("Manufacturer");
-        grid.addColumn(CarEntity::getDoor_number).setHeader("Door Number");
-        grid.addColumn(CarEntity::getManufacturerYear).setHeader("Manufacturer_year");
+        grid.addColumn(CarEntity::getDoor_number).setHeader("door_number");
+        grid.addColumn(CarEntity::getManufacturerYear).setHeader("manufacturer_year");
 
         addButtonBar(grid);
         add(grid);
@@ -60,18 +58,19 @@ public class CarManagerView extends VerticalLayout {
     }
 
     private void addForm(Grid<CarEntity> grid) {
+
         form = new VerticalLayout();
         binder = new Binder<>(CarEntity.class);
         type = new TextField();
-        door_number = new NumberField();
-        manufacturer_year = new NumberField();
+        NumberField doorNumber = new NumberField();
+        NumberField manufacturerYear = new NumberField();
         form.add(new Text("Type"), type);
         manufacturer = new ComboBox<>();
         manufacturer.setItems(manufacturerService.findAll());
         manufacturer.setItemLabelGenerator(manufacturerEntity -> manufacturerEntity.getName());
         form.add(new Text("Manufacturer"), manufacturer);
-        form.add(new Text("Door Number"), door_number);
-        form.add(new Text("Manufactured year"), manufacturer_year);
+        form.add(new Text("door_number"), doorNumber);
+        form.add(new Text("manufactured_year"), manufacturerYear);
 
 
         Button saveBtn = new Button();
@@ -84,6 +83,7 @@ public class CarManagerView extends VerticalLayout {
             }
             grid.setItems(service.findAll());
             form.setVisible(false);
+            Notification.show("Succesfully Saved!");
         });
         form.add(saveBtn);
         add(form);
@@ -100,7 +100,7 @@ public class CarManagerView extends VerticalLayout {
         deleteBTN.setText("Delete");
         deleteBTN.setIcon(VaadinIcon.TRASH.create());
         deleteBTN.addClickListener(buttonClickEvent -> {
-            service.deteteById(selectedCarEntity.getId());
+            service.deleteById(selectedCarEntity.getId());
             grid.setItems(service.findAll());
             selectedCarEntity = null;
             deleteBTN.setEnabled(false);
