@@ -16,6 +16,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,7 +29,14 @@ public class CarManagerView extends VerticalLayout {
     private VerticalLayout form;
     private TextField type;
     private ComboBox<ManufacturerEntity> manufacturer;
-
+    private TextField doorNumber = new TextField();
+    private TextField yearOfManufacturer;
+    // Oldd meg, hogy a textfieldbe bekerülő szám az bekerüljön az adatbázisba. Csak akkor lesz jó, ha csak az integert képes kezelni.
+    //hasznos linkek
+    /*
+    https://vaadin.com/forum/thread/2237685
+    https://vaadin.com/docs/v7/framework/articles/CreatingATextFieldForIntegerOnlyInputUsingADataSource
+     */
 
     private Binder<CarEntity> binder;
     @Autowired
@@ -50,7 +58,7 @@ public class CarManagerView extends VerticalLayout {
             return "";
         }).setHeader("Manufacturer");
         grid.addColumn(CarEntity::getDoor_number).setHeader("door_number");
-        grid.addColumn(CarEntity::getManufacturerYear).setHeader("manufacturer_year");
+        grid.addColumn(CarEntity::getYearOfManufacturer).setHeader("year_of_manufacturer");
 
         addButtonBar(grid);
         add(grid);
@@ -62,15 +70,13 @@ public class CarManagerView extends VerticalLayout {
         form = new VerticalLayout();
         binder = new Binder<>(CarEntity.class);
         type = new TextField();
-        NumberField doorNumber = new NumberField();
-        NumberField manufacturerYear = new NumberField();
         form.add(new Text("Type"), type);
         manufacturer = new ComboBox<>();
         manufacturer.setItems(manufacturerService.findAll());
         manufacturer.setItemLabelGenerator(manufacturerEntity -> manufacturerEntity.getName());
         form.add(new Text("Manufacturer"), manufacturer);
         form.add(new Text("door_number"), doorNumber);
-        form.add(new Text("manufactured_year"), manufacturerYear);
+        form.add(new Text("year_of_manufacturer"), yearOfManufacturer);
 
 
         Button saveBtn = new Button();

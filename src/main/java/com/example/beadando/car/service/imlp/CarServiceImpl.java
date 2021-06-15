@@ -15,7 +15,7 @@ public class CarServiceImpl extends CoreCRUDServiceImpl<CarEntity> implements Ca
     protected void updateCore(CarEntity updateEntity, CarEntity entity) {
         updateEntity.setManufacturer(entity.getManufacturer());
         updateEntity.setDoor_number(entity.getDoor_number());
-        updateEntity.setManufacturerYear(entity.getManufacturerYear());
+        updateEntity.setYearOfManufacturer(entity.getYearOfManufacturer());
         updateEntity.setType(entity.getType());
 
 
