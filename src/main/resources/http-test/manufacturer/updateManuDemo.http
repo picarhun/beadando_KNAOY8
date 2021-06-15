@@ -1,0 +1,9 @@
+PUT http://localhost:8081/api/manufacturer
+Content-Type: application/json
+
+{"id": 3,
+  "name": "PDCL"
+ }
+
+
+###

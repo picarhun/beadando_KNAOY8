@@ -1,0 +1,2 @@
+DELETE http://localhost:8081/api/car/18
+Accept: application/json
