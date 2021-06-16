@@ -5,6 +5,7 @@ import com.example.beadando.car.service.CarService;
 import com.example.beadando.core.component.MenuComponent;
 import com.example.beadando.manufacturer.entity.ManufacturerEntity;
 import com.example.beadando.manufacturer.service.ManufacturerService;
+import com.sun.xml.bind.v2.runtime.property.Property;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -29,14 +30,9 @@ public class CarManagerView extends VerticalLayout {
     private VerticalLayout form;
     private TextField type;
     private ComboBox<ManufacturerEntity> manufacturer;
-    private TextField doorNumber = new TextField();
-    private TextField yearOfManufacturer;
-    // Oldd meg, hogy a textfieldbe bekerülő szám az bekerüljön az adatbázisba. Csak akkor lesz jó, ha csak az integert képes kezelni.
-    //hasznos linkek
-    /*
-    https://vaadin.com/forum/thread/2237685
-    https://vaadin.com/docs/v7/framework/articles/CreatingATextFieldForIntegerOnlyInputUsingADataSource
-     */
+    private final TextField doorNumber = new TextField();
+    private final TextField yearOfManufacturer = new TextField();
+
 
     private Binder<CarEntity> binder;
     @Autowired
@@ -72,6 +68,17 @@ public class CarManagerView extends VerticalLayout {
         type = new TextField();
         form.add(new Text("Type"), type);
         manufacturer = new ComboBox<>();
+
+        binder.forField(doorNumber).withConverter(new StringToIntegerConverter("Must be a number!"))
+                .asRequired("The number of doors are required")
+                .withValidator(door -> door >= 2,"Must be larger then 1")
+                .withValidator(door -> door <= 6,"Must be lower then 7")
+                .bind(CarEntity::getDoor_number, CarEntity::setDoor_number);
+        binder.forField(yearOfManufacturer).withConverter(new StringToIntegerConverter("Must be a number!"))
+                .asRequired("Year of manufacture is required")
+                .withValidator(year -> year >= 1900, "Must be larger then 1900")
+                .withValidator(year -> year <= 2100,"Must be lower then 2100")
+                .bind(CarEntity::getYearOfManufacturer, CarEntity::setYearOfManufacturer);
         manufacturer.setItems(manufacturerService.findAll());
         manufacturer.setItemLabelGenerator(manufacturerEntity -> manufacturerEntity.getName());
         form.add(new Text("Manufacturer"), manufacturer);

@@ -50,7 +50,7 @@ public class CarEntity extends CoreEntity {
         return yearOfManufacturer;
     }
 
-    public void setYearOfManufacturer(int manufacturer_year) {
-        this.yearOfManufacturer = manufacturer_year;
+    public void setYearOfManufacturer(int yearOfManufacturer) {
+        this.yearOfManufacturer = yearOfManufacturer;
     }
 }
