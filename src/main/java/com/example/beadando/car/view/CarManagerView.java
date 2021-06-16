@@ -71,7 +71,7 @@ public class CarManagerView extends VerticalLayout {
 
         binder.forField(doorNumber).withConverter(new StringToIntegerConverter("Must be a number!"))
                 .asRequired("The number of doors are required")
-                .withValidator(door -> door >= 2,"Must be larger then 1")
+                .withValidator(door -> door >= 0,"Must be larger then 1")
                 .withValidator(door -> door <= 6,"Must be lower then 7")
                 .bind(CarEntity::getDoor_number, CarEntity::setDoor_number);
         binder.forField(yearOfManufacturer).withConverter(new StringToIntegerConverter("Must be a number!"))
