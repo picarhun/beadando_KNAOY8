@@ -15,9 +15,9 @@ public class CarEntity extends CoreEntity {
     @JoinColumn(name = "manufacturer_id")
     private ManufacturerEntity manufacturer;
     @Column(name = "door_number")
-    private int doorNumber;
+    private Integer doorNumber;
     @Column(name = "year_of_manufacturer")
-    private int yearOfManufacturer;
+    private Integer yearOfManufacturer;
 
     public CarEntity() {
     }
@@ -38,19 +38,19 @@ public class CarEntity extends CoreEntity {
         this.manufacturer = manufacturer;
     }
 
-    public int getDoor_number() {
+    public Integer getDoorNumber() {
         return doorNumber;
     }
 
-    public void setDoor_number(int door_number) {
+    public void setDoorNumber(Integer door_number) {
         this.doorNumber = door_number;
     }
 
-    public int getYearOfManufacturer() {
+    public Integer getYearOfManufacturer() {
         return yearOfManufacturer;
     }
 
-    public void setYearOfManufacturer(int yearOfManufacturer) {
+    public void setYearOfManufacturer(Integer yearOfManufacturer) {
         this.yearOfManufacturer = yearOfManufacturer;
     }
 }

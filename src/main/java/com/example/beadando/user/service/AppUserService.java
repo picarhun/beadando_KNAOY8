@@ -19,8 +19,6 @@ public interface AppUserService extends CoreCRUDService<AppUserEntity>, UserDeta
     @Override
     boolean deleteById(Long id);
 
-    @Override
-    boolean deteteById(Long id);
 
     @Override
     AppUserEntity update(AppUserEntity entity);

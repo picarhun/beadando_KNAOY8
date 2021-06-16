@@ -13,7 +13,6 @@ public interface CoreCRUDService<T> {
     @Transactional
     boolean deleteById(Long id);
 
-    boolean deteteById(Long id);
 
     @Transactional
     T update(T entity);

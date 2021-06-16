@@ -14,7 +14,7 @@ public class CarServiceImpl extends CoreCRUDServiceImpl<CarEntity> implements Ca
     @Override
     protected void updateCore(CarEntity updateEntity, CarEntity entity) {
         updateEntity.setManufacturer(entity.getManufacturer());
-        updateEntity.setDoor_number(entity.getDoor_number());
+        updateEntity.setDoorNumber(entity.getDoorNumber());
         updateEntity.setYearOfManufacturer(entity.getYearOfManufacturer());
         updateEntity.setType(entity.getType());
 
@@ -29,12 +29,6 @@ public class CarServiceImpl extends CoreCRUDServiceImpl<CarEntity> implements Ca
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
-    }
-
-
-    @Override
-    public boolean deleteById(Long id) {
-        return false;
     }
 }
 

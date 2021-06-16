@@ -33,7 +33,7 @@ public abstract class CoreCRUDServiceImpl<T extends CoreEntity> implements CoreC
     }
 
     @Override
-    public boolean deteteById(Long id) {
+    public boolean deleteById(Long id) {
         T ManufacturerEntity = findById(id);
         if (ManufacturerEntity == null) {
             return false;

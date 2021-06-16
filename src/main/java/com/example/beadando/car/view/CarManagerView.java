@@ -53,7 +53,7 @@ public class CarManagerView extends VerticalLayout {
             }
             return "";
         }).setHeader("Manufacturer");
-        grid.addColumn(CarEntity::getDoor_number).setHeader("door_number");
+        grid.addColumn(CarEntity::getDoorNumber).setHeader("door_number");
         grid.addColumn(CarEntity::getYearOfManufacturer).setHeader("year_of_manufacturer");
 
         addButtonBar(grid);
@@ -73,7 +73,7 @@ public class CarManagerView extends VerticalLayout {
                 .asRequired("The number of doors are required")
                 .withValidator(door -> door >= 0,"Must be larger then 1")
                 .withValidator(door -> door <= 6,"Must be lower then 7")
-                .bind(CarEntity::getDoor_number, CarEntity::setDoor_number);
+                .bind(CarEntity::getDoorNumber, CarEntity::setDoorNumber);
         binder.forField(yearOfManufacturer).withConverter(new StringToIntegerConverter("Must be a number!"))
                 .asRequired("Year of manufacture is required")
                 .withValidator(year -> year >= 1900, "Must be larger then 1900")

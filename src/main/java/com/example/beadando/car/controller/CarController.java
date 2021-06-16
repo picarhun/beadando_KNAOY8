@@ -56,7 +56,7 @@ public class CarController {
     //delete by id @DeleteMapping
     @DeleteMapping("/api/car/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        if (service.deteteById(id)) {
+        if (service.deleteById(id)) {
             return ResponseEntity.ok("Sikeres müvelet");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

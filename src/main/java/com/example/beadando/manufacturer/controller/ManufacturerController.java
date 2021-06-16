@@ -54,7 +54,7 @@ public class ManufacturerController {
     //delete by id @DeleteMapping
     @DeleteMapping("/api/manufacturer/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        if (service.deteteById(id)) {
+        if (service.deleteById(id)) {
             return ResponseEntity.ok("Sikeres müvelet");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

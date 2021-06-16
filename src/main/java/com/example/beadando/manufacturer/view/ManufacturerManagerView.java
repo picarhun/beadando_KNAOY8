@@ -74,7 +74,7 @@ public class ManufacturerManagerView extends VerticalLayout {
         deleteBTN.setText("Delete");
         deleteBTN.setIcon(VaadinIcon.TRASH.create());
         deleteBTN.addClickListener(buttonClickEvent -> {
-            service.deteteById(selectedManufacturer.getId());
+            service.deleteById(selectedManufacturer.getId());
             grid.setItems(service.findAll());
             selectedManufacturer = null;
             deleteBTN.setEnabled(false);

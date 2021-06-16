@@ -25,12 +25,5 @@ public class ManufacturerServiceImpl extends CoreCRUDServiceImpl<ManufacturerEnt
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
     }
-
-    @Override
-    public boolean deleteById(Long id) {
-        return false;
-    }
-
-
 }
 
